@@ -1,12 +1,15 @@
 module Components.Projects exposing (projects)
 
-import Html exposing (Html, div, p, text)
-import Html.Attributes exposing (style)
+import Html.Styled as Styled exposing (Html, div, p, text)
+import Html.Styled.Attributes exposing (css)
+import Css exposing (marginBottom, px)
 import Components.Shared exposing (boldText)
+
 
 projects : Html msg
 projects =
-    div [ style "margin-bottom" "30px" ]
+    div [ css [ marginBottom (px 30) ] ]
         [ boldText "Projects"
-        , p [] [ text "Placeholder for projects" ]
+        , p []
+            [ text "Placeholder for projects" ]
         ]

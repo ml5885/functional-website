@@ -1,23 +1,48 @@
-module Components.Shared exposing (boldText, link)
+module Components.Shared exposing (boldText, link, cssGlobalStyles)
 
-import Html exposing (Html, strong, a, text)
-import Html.Attributes exposing (style, href, target)
+import Css exposing (..)
+import Css.Global exposing (global)
+import Html.Styled as Styled exposing (Html, a, strong, text)
+import Html.Styled.Attributes exposing (css, href)
+
+-- Global Hover Style
+cssGlobalStyles : Html msg
+cssGlobalStyles =
+    global
+        [ Css.Global.selector "a:hover"
+            [ fontStyle italic
+            ]
+        ]
+
+-- Bold heading style
+boldTextStyle : Style
+boldTextStyle =
+    batch
+        [ fontSize (px 30)
+        , display block
+        , marginBottom (px 10)
+        ]
+
+-- Link style
+linkStyle : Style
+linkStyle =
+    batch
+        [ textDecoration none
+        , color (hex "000000")
+        , cursor pointer
+        ]
 
 boldText : String -> Html msg
 boldText str =
     strong
-        [ style "font-size" "30px"
-        , style "display" "block"
-        , style "margin-bottom" "10px"
-        ]
+        [ css [ boldTextStyle ] ]
         [ text str ]
 
 link : String -> String -> Html msg
-link url str =
+link url label =
     a
         [ href url
-        , target "_blank"
-        , style "text-decoration" "none"
-        , style "color" "black"
+        , Html.Styled.Attributes.target "_blank"
+        , css [ linkStyle ]
         ]
-        [ text str ]
+        [ text label ]

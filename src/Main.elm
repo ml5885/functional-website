@@ -1,18 +1,34 @@
 module Main exposing (main)
 
-import Html exposing (Html, div)
-import Html.Attributes exposing (style)
+import Browser
+import Html.Styled as Styled exposing (Html, div, toUnstyled)
+import Html.Styled.Attributes exposing (css)
+import Css exposing (..)
 import Components.AboutMe exposing (aboutMe)
 import Components.Projects exposing (projects)
 import Components.Experience exposing (experience)
+import Components.Shared exposing (cssGlobalStyles)
 
-main : Html msg
+
+main : Program () () msg
 main =
-    div
-        [ style "margin" "0 auto"
-        , style "max-width" "800px"
-        , style "padding" "50px"
-        , style "font-family" "Arial, sans-serif"
-        , style "font-size" "18px"
-        ]
-        [ aboutMe, projects, experience ]
+    Browser.sandbox
+        { init = ()
+        , update = \_ model -> model
+        , view = \_ ->
+            toUnstyled <|
+                div
+                    [ css
+                        [ margin2 zero auto
+                        , maxWidth (px 800)
+                        , padding (px 50)
+                        , fontFamilies [ "Arial", .value sansSerif ]
+                        , fontSize (px 18)
+                        ]
+                    ]
+                    [ cssGlobalStyles
+                    , aboutMe
+                    , projects
+                    , experience
+                    ]
+        }
