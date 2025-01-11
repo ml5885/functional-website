@@ -1,6 +1,6 @@
 module Components.AboutMe exposing (aboutMe)
 
-import Html.Styled as Styled exposing (Html, div, p, text)
+import Html.Styled exposing (Html, div, p, text)
 import Html.Styled.Attributes exposing (css)
 import Css exposing (px, marginBottom)
 import Components.Shared exposing (boldText, link)

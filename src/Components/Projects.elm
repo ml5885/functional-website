@@ -1,6 +1,6 @@
 module Components.Projects exposing (projects)
 
-import Html.Styled as Styled exposing (Html, div, p, text)
+import Html.Styled exposing (Html, div, p, text)
 import Html.Styled.Attributes exposing (css)
 import Css exposing (marginBottom, px)
 import Components.Shared exposing (boldText)
